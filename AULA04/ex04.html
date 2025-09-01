@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem</title>
+    <style>
+        body {
+            background-color: blueviolet;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20pt;
+        }
+        header {
+            text-align: center;
+            color: white;
+        }
+        main {
+            background-color: white;
+            height: auto;
+            width: 900px;
+            margin: auto;
+            border-radius: 10px;
+            padding: 10px 50px 30px 50px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.456);
+        }
+        footer {
+            text-align: center;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vamos contar!</h1>
+    </header>
+    <main>
+        <p>Início:
+            <input type="number" name="inicio" id="inicio">
+        </p>
+        <p>Fim:
+            <input type="number" name="fim" id="fim">
+        </p>
+        <p>Passo:
+            <input type="number" name="passo" id="passo">
+        </p>
+        <p>
+            <input type="button" value="Contar" onclick="contar()">
+        </p>
+
+        <div id="res">
+          Preparando a contagem...
+        </div>
+    </main>
+    <footer>
+        <p><strong>@_eomarcss</strong></p>
+    </footer>
+<script>
+    let i = document.getElementById('inicio')
+    let f = document.getElementById('fim')
+    let p = document.getElementById('passo')
+    let res = document.getElementById('res')
+    function contar() {
+
+    let inicio = Number(i.value)
+
+    let fim = Number(f.value)
+
+    let passo = Number(p.value)
+
+        res.innerHTML = "Contando... "
+
+    if (i.value.length == 0 || f.value.length == 0 || p.value.length == 0) {
+        alert("Impossível contar!")
+        return
+    }
+
+    if (passo <= 0) {
+        alert("Passo inválido! Considerando passo = 1")
+        passo = 1
+    }
+
+    if (inicio < fim) {
+        // crescente
+        for (let c = inicio; c <= fim; c += passo) {
+            res.innerHTML += `, ${c}`
+        }
+    } else {
+        // decrescente
+        for (let c = inicio; c >= fim; c -= passo) {
+            res.innerHTML += `, ${c}`
+        }
+    }
+}
+
+
+</script>
+</body>
+</html>

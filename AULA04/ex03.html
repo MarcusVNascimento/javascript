@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+    <style>
+        body {
+            background-color: blueviolet;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20pt;
+        }
+        header {
+            text-align: center;
+            color: white;
+        }
+        main {
+            background-color: white;
+            height: auto;
+            width: 900px;
+            margin: auto;
+            border-radius: 10px;
+            padding: 10px 50px 30px 50px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.456);
+        }
+        #foto {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Verificador de idade</h1>
+    </header>
+    <main>
+        <p>Ano de nascimento:
+             <input type="number" name="num1" id="num1" min="0"></p>
+        <p>Sexo:
+            <input type="radio" name="rad" id="mas" checked>
+            <label for="mas">Masculino</label>
+            <input type="radio" name="rad" id="fem">
+            <label for="fem">Feminino</label>
+        </p>
+        <p><input type="button" value="Verificar" onclick="verifica()"></p>
+        <div id="foto">
+            Preencha os dados acima para ver os resultados!
+        </div>
+    </main>
+    <script>
+
+        function verifica() {
+            var tnano = document.getElementById('num1')
+            var ano = Number(tnano.value)
+            var res = document.getElementById('foto')
+            var hoje = new Date()
+            var data = hoje.getFullYear()
+            var idade = data - ano
+            var fsex = document.getElementsByName('rad')
+            var genero = ''
+            if (isNaN(ano) || ano > data) {
+                alert('[ERROR] dados incorretos!')
+            } else {
+            if (fsex[0].checked) {
+                if (idade < 12) {
+                    res.innerText = ' homemcriança'
+                } else if (idade < 21) {
+                    res.innerText = ' homem jovem'
+                } else if (idade < 55) {
+                    res.innerText = 'homem adulto'
+                } else {
+                    res.innerText = 'homem idoso'
+                }
+
+            }  else if (fsex[1].checked) {
+            if (idade < 12) {
+                res.innerText = 'Mulher criança';
+            } else if (idade < 21) {
+                res.innerText = 'Mulher jovem';
+            } else if (idade < 55) {
+                res.innerText = 'Mulher adulta';
+            } else {
+                res.innerText = 'Mulher idosa';
+            }
+
+            }
+
+        }
+
+    }
+    </script>
+</body>
+</html>
